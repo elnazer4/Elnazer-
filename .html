@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علم نافع - منصة التعليم النافع</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0D47A1;
+            --primary-light: #E3F2FD;
+            --primary-blue: #2196F3;
+            --white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray: #E0E0E0;
+            --gray-dark: #757575;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #f44336;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        /* الشريط العلوي */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo h1 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+        }
+
+        .logo i {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-blue);
+        }
+
+        nav ul li a.active {
+            color: var(--primary-blue);
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-blue);
+        }
+
+        .user-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .user-status i {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+
+        /* زر النشر المخفي */
+        .hidden-admin-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 9999;
+            opacity: 0.2;
+            transition: all 0.3s;
+        }
+
+        .hidden-admin-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* المحتوى الرئيسي */
+        main {
+            margin-top: 80px;
+            padding: 20px 5%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(227, 242, 253, 0.8) 100%);
+            padding: 5rem 5%;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray-dark);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+        }
+
+        .btn-warning {
+            background-color: var(--warning);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+        }
+
+        /* الأقسام المميزة */
+        .featured-sections {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-blue);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary-blue);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-header {
+            background-color: var(--primary-light);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-header i {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .card-header h3 {
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body p {
+            color: var(--gray-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .card-footer {
+            padding: 0 1.5rem 1.5rem;
+            text-align: center;
+        }
+
+        /* صفحة التفريغات */
+        .transcripts-page, .live-page, .schedule-page, .publish-page {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .search-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            font-size: 1rem;
+            background-color: var(--white);
+        }
+
+        .search-box button {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .scholars-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .scholar-tab {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-light);
+            border: 2px solid var(--primary-blue);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-dark);
+            transition: all 0.3s;
+        }
+
+        .scholar-tab:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .scholar-tab.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .transcripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .transcript-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .transcript-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .transcript-card h3 {
+            background-color: var(--primary-light);
+            padding: 1.2rem;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+        }
+
+        .transcript-info {
+            padding: 0 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .transcript-card p {
+            padding: 1.2rem;
+            color: var(--gray-dark);
+            min-height: 100px;
+        }
+
+        .transcript-card .card-actions {
+            padding: 0 1.2rem 1.2rem;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* صفحة البث المباشر */
+        .live-container {
+            background-color: var(--primary-light);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .live-video-placeholder {
+            background-color: var(--gray-dark);
+            width: 100%;
+            height: 500px;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-video-placeholder i {
+            font-size: 5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .live-video-placeholder p {
+            color: var(--white);
+            font-size: 1.3rem;
+            max-width: 500px;
+            padding: 0 1rem;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 500px;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            border: none;
+        }
+
+        .live-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .live-indicator {
+            width: 12px;
+            height: 12px;
+            background-color: #f44336;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* صفحة المواعيد */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .schedule-table th {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 1.2rem;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--gray);
+            text-align: right;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background-color: var(--primary-light);
+        }
+
+        .schedule-table tr:hover {
+            background-color: rgba(33, 150, 243, 0.1);
+        }
+
+        .reminder-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .reminder-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* صفحة النشر */
+        .publish-form-container {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .admin-actions {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        /* نافذة تسجيل الدخول */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .login-box {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .login-box h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .login-message {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-message.success {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .login-message.error {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .login-message.info {
+            background-color: rgba(33, 150, 243, 0.1);
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .verification-step {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--primary-light);
+            border-radius: var(--border-radius);
+        }
+
+        .verification-step h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* التذييل */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* حقل رفع الملفات */
+        .file-upload {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .file-upload label {
+            display: block;
+            padding: 0.8rem;
+            background-color: var(--primary-light);
+            border: 2px dashed var(--primary-blue);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary-dark);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .file-upload label:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .file-upload .file-name {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            text-align: center;
+        }
+
+        /* التجاوب مع الشاشات المختلفة */
+        @media (max-width: 992px) {
+            .cards-container, .transcripts-grid, .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 3%;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                width: 100%;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid var(--gray);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .live-video-placeholder, .video-frame {
+                height: 350px;
+            }
+            
+            .schedule-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .user-status {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 5%;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cards-container, .transcripts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .live-video-placeholder, .video-frame {
+                height: 250px;
+            }
+            
+            .live-video-placeholder i {
+                font-size: 3.5rem;
+            }
+            
+            .live-video-placeholder p {
+                font-size: 1.1rem;
+            }
+            
+            .scholars-tabs {
+                flex-direction: column;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .hidden-admin-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                bottom: 15px;
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="navbar">
+            <div class="logo" id="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>علم نافع</h1>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" data-page="home" class="active">الصفحة الرئيسية</a></li>
+                    <li><a href="#" data-page="transcripts">التفريغات</a></li>
+                    <li><a href="#" data-page="live">البث المباشر الآن</a></li>
+                    <li><a href="#" data-page="schedule">مواعيد البث المباشر</a></li>
+                    <li><a href="#" data-page="publish" id="publish-link" style="display: none;">النشر</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-status" id="userStatus">
+                <i class="fas fa-user"></i>
+                <span id="userType">زائر</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- زر النشر المخفي -->
+    <div class="hidden-admin-btn" id="hiddenAdminBtn" title="الدخول للنشر">
+        <i class="fas fa-pen-nib"></i>
+    </div>
+
+    <!-- نافذة تسجيل الدخول -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-box">
+            <h3>نظام التحقق للمساهمين</h3>
+            <div class="login-message info" id="loginMessage">
+                يرجى إكمال خطوة التحقق للمتابعة
+            </div>
+            
+            <div class="verification-step" id="humanVerification">
+                <h4>التحقق من الهوية</h4>
+                <p>للتأكد من أنك إنسان، يرجى كتابة نتيجة العملية الحسابية التالية:</p>
+                <p id="mathQuestion" style="font-weight: bold; text-align: center; font-size: 1.2rem; margin: 10px 0;"></p>
+                <input type="text" id="mathAnswer" class="form-control" placeholder="الإجابة">
+            </div>
+            
+            <div id="passwordStep" style="display: none;">
+                <div class="form-group">
+                    <label for="password">رمز التحقق الخاص</label>
+                    <input type="password" id="password" class="form-control" placeholder="أدخل رمز التحقق">
+                    <small style="color: var(--gray-dark); margin-top: 0.5rem; display: block;">
+                        للمستخدمين المسجلين فقط
+                    </small>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancelLogin">إلغاء</button>
+                <button type="button" class="btn" id="submitVerification">تحقق</button>
+                <button type="button" class="btn btn-success" id="submitLogin" style="display: none;">دخول</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <main id="main-content">
+        <!-- الصفحة الرئيسية -->
+        <div id="home-page" class="page-content">
+            <section class="hero">
+                <h2>مرحبًا بك في علم نافع</h2>
+                <p>منصة تعليمية هدفها نشر العلم النافع بطريقة سهلة وواضحة، مع تقديم محتوى تعليمي متميز في مختلف المجالات.</p>
+                <a href="#" class="btn" id="startLearning">ابدأ التعلم الآن</a>
+            </section>
+            
+            <section class="featured-sections">
+                <h2 class="section-title">الخدمات التعليمية</h2>
+                
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-file-alt"></i>
+                            <h3>التفريغات</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>تفريغات كاملة ومرتبة لشرح الدروس والمحاضرات، مصنفة حسب الشيوخ والمحاضرين.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary" data-page="transcripts">انتقل للصفحة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-video"></i>
+                            <h3>البث المباشر الآن</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>متابعة البث المباشر للدروس في الوقت الحالي، مع إمكانية التفاعل مع المحاضر وطرح الأسئلة.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary" data-page="live">شاهد الآن</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>مواعيد البث المباشر</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>جدول مواعيد بث الدروس القادمة في مختلف التخصصات، مع إمكانية الحصول على تذكير قبل بدء الدرس.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary" data-page="schedule">اعرف المواعيد</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- صفحة التفريغات -->
+        <div id="transcripts-page" class="page-content" style="display: none;">
+            <div class="transcripts-page">
+                <h2 class="section-title">التفريغات</h2>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="ابحث في التفريغات عن طريق العنوان، الشيخ، أو القسم...">
+                        <button type="button" id="searchButton">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="scholars-tabs" id="scholarsTabs"></div>
+                
+                <div class="transcripts-grid" id="transcriptsContainer">
+                    <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--gray-dark);">
+                        <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>لا توجد تفريغات حالياً</h3>
+                        <p>لم يتم إضافة أي تفريغات بعد. يمكنك إضافة تفريغات جديدة من صفحة النشر.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- صفحة البث المباشر -->
+        <div id="live-page" class="page-content" style="display: none;">
+            <div class="live-page">
+                <h2 class="section-title" id="liveTitle">البث المباشر الآن</h2>
+                
+                <div id="liveStatus" class="live-status" style="display: none;">
+                    <div class="live-indicator"></div>
+                    <p id="liveStatusText">جاري البث المباشر الآن</p>
+                </div>
+                
+                <div class="live-container">
+                    <div id="videoContainer">
+                        <div class="live-video-placeholder">
+                            <i class="fas fa-satellite-dish"></i>
+                            <p>لا يوجد بث مباشر حاليًا. سيظهر البث هنا عند بدء الدرس.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="liveInfo" style="display: none;">
+                        <p id="liveLessonTitle">البث المباشر الحالي: <strong id="currentLesson"></strong></p>
+                        <p id="liveScholar">المحاضر: <strong id="currentScholar"></strong></p>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="#" class="btn" data-page="schedule">مواعيد البث القادمة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- صفحة المواعيد -->
+        <div id="schedule-page" class="page-content" style="display: none;">
+            <div class="schedule-page">
+                <h2 class="section-title">مواعيد البث المباشر</h2>
+                
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>اسم الدرس</th>
+                            <th>موعد البث</th>
+                            <th>المُحاضر</th>
+                            <th>تذكير</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 2rem; color: var(--gray-dark);">
+                                لا توجد مواعيد بث مباشر مضافة حالياً.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <p>جميع الأوقات حسب توقيت مكة المكرمة (GMT+3)</p>
+                    <a href="#" class="btn" data-page="live" style="margin-top: 1rem;">انتقل إلى البث المباشر</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- صفحة النشر -->
+        <div id="publish-page" class="page-content" style="display: none;">
+            <div class="publish-page">
+                <h2 class="section-title" id="publishTitle">نشر محتوى جديد</h2>
+                
+                <div class="publish-form-container">
+                    <form id="publishForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="publishType">نوع المحتوى *</label>
+                                <select id="publishType" class="form-control" required>
+                                    <option value="">اختر نوع المحتوى</option>
+                                    <option value="transcript">تفريغ</option>
+                                    <option value="live">بث مباشر</option>
+                                    <option value="schedule">موعد بث</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="publishScholar">اختر الشيخ *</label>
+                                <select id="publishScholar" class="form-control" required>
+                                    <option value="">اختر الشيخ</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="publishTitleInput">عنوان المحتوى *</label>
+                            <input type="text" id="publishTitleInput" class="form-control" placeholder="أدخل عنوان المحتوى" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="publishDescription">وصف المحتوى *</label>
+                            <textarea id="publishDescription" class="form-control" placeholder="أدخل وصف مختصر للمحتوى" required></textarea>
+                        </div>
+                        
+                        <div class="form-group" id="youtubeUrlField" style="display: none;">
+                            <label for="youtubeUrl">رابط اليوتيوب للبث المباشر *</label>
+                            <input type="url" id="youtubeUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+                            <small>أدخل رابط فيديو يوتيوب للبث المباشر</small>
+                        </div>
+                        
+                        <div class="form-group" id="fileUploadField" style="display: none;">
+                            <label>رفع ملف التفريغ (اختياري)</label>
+                            <div class="file-upload">
+                                <input type="file" id="transcriptFile" accept=".pdf,.doc,.docx,.txt">
+                                <label for="transcriptFile">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>اختر ملف للرفع</span>
+                                </label>
+                                <div class="file-name" id="fileName">لم يتم اختيار ملف</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="transcriptYoutubeField" style="display: none;">
+                            <label for="transcriptYoutubeUrl">رابط اليوتيوب للتفريغ (اختياري)</label>
+                            <input type="url" id="transcriptYoutubeUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+                        </div>
+                        
+                        <div class="form-group" id="scheduleDateField" style="display: none;">
+                            <label for="scheduleDate">تاريخ ووقت البث *</label>
+                            <input type="datetime-local" id="scheduleDate" class="form-control">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="reset" class="btn btn-secondary">مسح النموذج</button>
+                            <button type="submit" class="btn" id="publishSubmitBtn">نشر</button>
+                        </div>
+                    </form>
+                    
+                    <div class="admin-actions" id="adminActions" style="display: none;">
+                        <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">أدوات المسؤول</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newScholar">إضافة شيخ جديد</label>
+                                <input type="text" id="newScholar" class="form-control" placeholder="اسم الشيخ الجديد">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-warning" id="addScholarBtn">إضافة شيخ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>علم نافع</h1>
+            </div>
+            <p>منصة تعليمية تهدف إلى نشر العلم النافع في مختلف المجالات الشرعية والعلمية</p>
+            <p>© 2025 علم نافع – جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // البيانات الأساسية
+        const dataManager = {
+            currentUser: localStorage.getItem('userType') || 'visitor',
+            scholars: JSON.parse(localStorage.getItem('scholars')) || [
+                { id: 1, name: 'الشيخ محمد بن صالح العثيمين', description: 'فقيه وعالم سعودي' },
+                { id: 2, name: 'الشيخ عبد العزيز بن باز', description: 'مفتي عام المملكة العربية السعودية سابقاً' },
+                { id: 3, name: 'الشيخ رسلان', description: 'داعية سوري' },
+                { id: 4, name: 'الشيخ عبد المحسن القاسم', description: 'إمام الحرم المدني' },
+                { id: 5, name: 'الشيخ عبد الرزاق البدر', description: 'عالم وداعية كويتي' },
+                { id: 6, name: 'الشيخ سليمان الرحيلي', description: 'عالم وداعية سعودي' }
+            ],
+            transcripts: JSON.parse(localStorage.getItem('transcripts')) || [],
+            liveStream: JSON.parse(localStorage.getItem('liveStream')) || null,
+            schedule: JSON.parse(localStorage.getItem('schedule')) || [],
+
+            saveData() {
+                localStorage.setItem('scholars', JSON.stringify(this.scholars));
+                localStorage.setItem('transcripts', JSON.stringify(this.transcripts));
+                localStorage.setItem('liveStream', JSON.stringify(this.liveStream));
+                localStorage.setItem('schedule', JSON.stringify(this.schedule));
+                localStorage.setItem('userType', this.currentUser);
+            },
+
+            addTranscript(transcript) {
+                transcript.id = Date.now();
+                transcript.date = new Date().toLocaleDateString('ar-SA');
+                transcript.views = 0;
+                this.transcripts.unshift(transcript);
+                this.saveData();
+                return transcript;
+            },
+
+            setLiveStream(stream) {
+                this.liveStream = stream;
+                this.saveData();
+            },
+
+            addToSchedule(item) {
+                item.id = Date.now();
+                this.schedule.push(item);
+                this.saveData();
+                return item;
+            },
+
+            addScholar(scholar) {
+                scholar.id = Date.now();
+                this.scholars.push(scholar);
+                this.saveData();
+                return scholar;
+            }
+        };
+
+        // إدارة الصفحات
+        const pageManager = {
+            currentPage: 'home',
+            
+            init() {
+                this.showPage('home');
+                this.setupNavigation();
+                this.updateUserStatus();
+            },
+
+            showPage(pageName) {
+                // إخفاء جميع الصفحات
+                document.querySelectorAll('.page-content').forEach(page => {
+                    page.style.display = 'none';
+                });
+
+                // إزالة النشط من جميع الروابط
+                document.querySelectorAll('#navMenu a').forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // إضافة النشط للرابط المحدد
+                document.querySelector(`#navMenu a[data-page="${pageName}"]`)?.classList.add('active');
+
+                // عرض الصفحة المطلوبة
+                const pageElement = document.getElementById(`${pageName}-page`);
+                if (pageElement) {
+                    pageElement.style.display = 'block';
+                    this.currentPage = pageName;
+                    
+                    // تحميل محتوى الصفحة
+                    this.loadPageContent(pageName);
+                    
+                    // التمرير لأعلى
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            },
+
+            setupNavigation() {
+                // الروابط في القائمة الرئيسية
+                document.querySelectorAll('#navMenu a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const page = link.getAttribute('data-page');
+                        if (page) {
+                            this.showPage(page);
+                        }
+                    });
+                });
+
+                // الروابط في الأزرار
+                document.querySelectorAll('[data-page]').forEach(btn => {
+                    if (btn !== document.querySelector('#navMenu a')) {
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const page = btn.getAttribute('data-page');
+                            if (page) {
+                                this.showPage(page);
+                            }
+                        });
+                    }
+                });
+
+                // زر البداية
+                document.getElementById('startLearning')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.showPage('transcripts');
+                });
+
+                // الشعار
+                document.getElementById('logo')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.showPage('home');
+                });
+            },
+
+            loadPageContent(pageName) {
+                switch(pageName) {
+                    case 'transcripts':
+                        transcriptsManager.loadTranscripts();
+                        break;
+                    case 'live':
+                        liveStreamManager.loadLiveStream();
+                        break;
+                    case 'schedule':
+                        scheduleManager.loadSchedule();
+                        break;
+                    case 'publish':
+                        publishManager.init();
+                        break;
+                }
+            },
+
+            updateUserStatus() {
+                const userTypeElement = document.getElementById('userType');
+                const publishLink = document.getElementById('publish-link');
+                
+                if (userTypeElement) {
+                    userTypeElement.textContent = 
+                        dataManager.currentUser === 'admin' ? 'مسؤول' :
+                        dataManager.currentUser === 'user' ? 'مساهم' : 'زائر';
+                }
+                
+                if (publishLink) {
+                    publishLink.style.display = 
+                        (dataManager.currentUser === 'admin' || dataManager.currentUser === 'user') 
+                        ? 'block' : 'none';
+                }
+            }
+        };
+
+        // إدارة التفريغات
+        const transcriptsManager = {
+            loadTranscripts() {
+                this.loadScholarTabs();
+                this.displayTranscripts();
+                this.setupSearch();
+            },
+
+            loadScholarTabs() {
+                const tabsContainer = document.getElementById('scholarsTabs');
+                tabsContainer.innerHTML = '';
+
+                // تبويب "الكل"
+                const allTab = document.createElement('div');
+                allTab.className = 'scholar-tab active';
+                allTab.textContent = 'الكل';
+                allTab.dataset.scholarId = 'all';
+                allTab.addEventListener('click', () => this.filterByScholar('all'));
+                tabsContainer.appendChild(allTab);
+
+                // تبويبات الشيوخ
+                dataManager.scholars.forEach(scholar => {
+                    const tab = document.createElement('div');
+                    tab.className = 'scholar-tab';
+                    tab.textContent = scholar.name;
+                    tab.dataset.scholarId = scholar.id;
+                    tab.addEventListener('click', () => this.filterByScholar(scholar.id));
+                    tabsContainer.appendChild(tab);
+                });
+            },
+
+            filterByScholar(scholarId) {
+                // تحديث التبويب النشط
+                document.querySelectorAll('.scholar-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelector(`.scholar-tab[data-scholar-id="${scholarId}"]`).classList.add('active');
+                
+                this.displayTranscripts(scholarId);
+            },
+
+            displayTranscripts(scholarId = 'all') {
+                const container = document.getElementById('transcriptsContainer');
+                let transcripts = dataManager.transcripts;
+
+                if (scholarId !== 'all') {
+                    transcripts = transcripts.filter(t => t.scholarId == scholarId);
+                }
+
+                if (transcripts.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--gray-dark);">
+                            <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3>لا توجد تفريغات حالياً</h3>
+                            <p>${scholarId === 'all' ? 'لم يتم إضافة أي تفريغات بعد.' : 'لا توجد تفريغات لهذا الشيخ حالياً.'}</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = '';
+                transcripts.forEach(transcript => {
+                    const scholar = dataManager.scholars.find(s => s.id === transcript.scholarId);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'transcript-card';
+                    card.innerHTML = `
+                        <h3>${transcript.title}</h3>
+                        <div class="transcript-info">
+                            <span>${scholar ? scholar.name : 'غير معروف'}</span>
+                            <span>${transcript.date}</span>
+                        </div>
+                        <p>${transcript.description}</p>
+                        <div class="card-actions">
+                            ${transcript.youtubeUrl ? 
+                                `<button class="btn" onclick="transcriptsManager.viewVideo('${transcript.youtubeUrl}')">مشاهدة</button>` : 
+                                `<button class="btn" onclick="transcriptsManager.viewTranscript(${transcript.id})">عرض التفريغ</button>`
+                            }
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            },
+
+            setupSearch() {
+                const searchInput = document.getElementById('searchInput');
+                const searchButton = document.getElementById('searchButton');
+
+                const performSearch = () => {
+                    const query = searchInput.value.toLowerCase().trim();
+                    const filtered = dataManager.transcripts.filter(transcript => 
+                        transcript.title.toLowerCase().includes(query) ||
+                        transcript.description.toLowerCase().includes(query)
+                    );
+                    this.displaySearchResults(filtered);
+                };
+
+                searchInput?.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') performSearch();
+                });
+
+                searchButton?.addEventListener('click', performSearch);
+            },
+
+            displaySearchResults(results) {
+                const container = document.getElementById('transcriptsContainer');
+                
+                if (results.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--gray-dark);">
+                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3>لم يتم العثور على نتائج</h3>
+                            <p>حاول استخدام كلمات بحث مختلفة</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                this.displayTranscripts(); // إعادة العرض للنتائج
+            },
+
+            viewVideo(url) {
+                const embedUrl = this.convertToEmbed(url);
+                window.open(embedUrl, '_blank');
+            },
+
+            viewTranscript(id) {
+                const transcript = dataManager.transcripts.find(t => t.id === id);
+                if (transcript) {
+                    alert(`عرض تفريغ: ${transcript.title}\n\nسيتم فتح التفريغ في نافذة جديدة.`);
+                    // في تطبيق حقيقي، هنا سيتم عرض محتوى التفريغ
+                }
+            },
+
+            convertToEmbed(url) {
+                // تحويل رابط يوتيوب إلى رابط embed
+                const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/)?.[1];
+                return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+            }
+        };
+
+        // إدارة البث المباشر
+        const liveStreamManager = {
+            loadLiveStream() {
+                const stream = dataManager.liveStream;
+                const container = document.getElementById('videoContainer');
+                const status = document.getElementById('liveStatus');
+                const info = document.getElementById('liveInfo');
+
+                if (stream && stream.youtubeUrl) {
+                    const embedUrl = transcriptsManager.convertToEmbed(stream.youtubeUrl);
+                    container.innerHTML = `
+                        <iframe class="video-frame" src="${embedUrl}" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    `;
+                    status.style.display = 'flex';
+                    info.style.display = 'block';
+                    document.getElementById('currentLesson').textContent = stream.title;
+                    document.getElementById('currentScholar').textContent = stream.scholarName;
+                    document.getElementById('liveTitle').textContent = 'البث المباشر الآن';
+                } else {
+                    container.innerHTML = `
+                        <div class="live-video-placeholder">
+                            <i class="fas fa-satellite-dish"></i>
+                            <p>لا يوجد بث مباشر حاليًا. سيظهر البث هنا عند بدء الدرس.</p>
+                        </div>
+                    `;
+                    status.style.display = 'none';
+                    info.style.display = 'none';
+                }
+            }
+        };
+
+        // إدارة الجدول الزمني
+        const scheduleManager = {
+            loadSchedule() {
+                const tbody = document.getElementById('scheduleBody');
+                const schedule = dataManager.schedule;
+
+                if (schedule.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 2rem; color: var(--gray-dark);">
+                                لا توجد مواعيد بث مباشر مضافة حالياً.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tbody.innerHTML = '';
+                schedule.forEach(item => {
+                    const scholar = dataManager.scholars.find(s => s.id === item.scholarId);
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.title}</td>
+                        <td>${this.formatDate(item.scheduleDate)}</td>
+                        <td>${scholar ? scholar.name : 'غير معروف'}</td>
+                        <td><button class="reminder-btn" onclick="scheduleManager.setReminder(${item.id})">تفعيل التذكير</button></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            },
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleString('ar-SA', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            },
+
+            setReminder(id) {
+                alert('تم تفعيل التذكير! ستصلك رسالة تذكير قبل بدء الدرس.');
+                const btn = event?.target;
+                if (btn) {
+                    btn.textContent = 'تم التفعيل';
+                    btn.style.backgroundColor = '#4CAF50';
+                    btn.disabled = true;
+                }
+            }
+        };
+
+        // إدارة النشر
+        const publishManager = {
+            init() {
+                this.loadScholars();
+                this.setupForm();
+                this.setupAdminTools();
+            },
+
+            loadScholars() {
+                const select = document.getElementById('publishScholar');
+                select.innerHTML = '<option value="">اختر الشيخ</option>';
+                dataManager.scholars.forEach(scholar => {
+                    const option = document.createElement('option');
+                    option.value = scholar.id;
+                    option.textContent = scholar.name;
+                    select.appendChild(option);
+                });
+            },
+
+            setupForm() {
+                const form = document.getElementById('publishForm');
+                const typeSelect = document.getElementById('publishType');
+                const adminActions = document.getElementById('adminActions');
+
+                // إظهار/إخفاء حقول إضافية بناءً على نوع المحتوى
+                typeSelect.addEventListener('change', () => {
+                    this.toggleFields(typeSelect.value);
+                });
+
+                // إظهار أدوات المسؤول
+                if (dataManager.currentUser === 'admin') {
+                    adminActions.style.display = 'block';
+                    document.getElementById('publishTitle').textContent = 'نشر محتوى جديد - نظام المسؤول';
+                } else {
+                    adminActions.style.display = 'none';
+                }
+
+                // معالجة إرسال النموذج
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitForm();
+                });
+
+                // إدارة رفع الملف
+                const fileInput = document.getElementById('transcriptFile');
+                const fileName = document.getElementById('fileName');
+                fileInput?.addEventListener('change', () => {
+                    fileName.textContent = fileInput.files[0]?.name || 'لم يتم اختيار ملف';
+                });
+            },
+
+            toggleFields(type) {
+                const fields = {
+                    youtubeUrlField: 'live',
+                    fileUploadField: 'transcript',
+                    transcriptYoutubeField: 'transcript',
+                    scheduleDateField: 'schedule'
+                };
+
+                // إخفاء جميع الحقول
+                Object.keys(fields).forEach(fieldId => {
+                    document.getElementById(fieldId).style.display = 'none';
+                });
+
+                // إظهار الحقول المناسبة
+                Object.entries(fields).forEach(([fieldId, fieldType]) => {
+                    if (type === fieldType) {
+                        document.getElementById(fieldId).style.display = 'block';
+                    }
+                });
+            },
+
+            async submitForm() {
+                const type = document.getElementById('publishType').value;
+                const scholarId = parseInt(document.getElementById('publishScholar').value);
+                const title = document.getElementById('publishTitleInput').value;
+                const description = document.getElementById('publishDescription').value;
+
+                if (!type || !scholarId || !title || !description) {
+                    alert('يرجى ملء جميع الحقول المطلوبة');
+                    return;
+                }
+
+                const scholar = dataManager.scholars.find(s => s.id === scholarId);
+
+                try {
+                    if (type === 'live') {
+                        const youtubeUrl = document.getElementById('youtubeUrl').value;
+                        if (!youtubeUrl) {
+                            alert('يرجى إدخال رابط اليوتيوب');
+                            return;
+                        }
+
+                        dataManager.setLiveStream({
+                            title,
+                            description,
+                            scholarId,
+                            scholarName: scholar.name,
+                            youtubeUrl
+                        });
+
+                        alert('تم نشر البث المباشر بنجاح!');
+                        pageManager.showPage('live');
+
+                    } else if (type === 'transcript') {
+                        let fileContent = '';
+                        const fileInput = document.getElementById('transcriptFile');
+                        
+                        if (fileInput.files[0]) {
+                            fileContent = await this.readFile(fileInput.files[0]);
+                        }
+
+                        const youtubeUrl = document.getElementById('transcriptYoutubeUrl').value;
+
+                        dataManager.addTranscript({
+                            title,
+                            description,
+                            scholarId,
+                            scholarName: scholar.name,
+                            youtubeUrl,
+                            fileContent,
+                            fileName: fileInput.files[0]?.name
+                        });
+
+                        alert('تم نشر التفريغ بنجاح!');
+                        pageManager.showPage('transcripts');
+
+                    } else if (type === 'schedule') {
+                        const scheduleDate = document.getElementById('scheduleDate').value;
+                        if (!scheduleDate) {
+                            alert('يرجى اختيار تاريخ البث');
+                            return;
+                        }
+
+                        dataManager.addToSchedule({
+                            title,
+                            description,
+                            scholarId,
+                            scholarName: scholar.name,
+                            scheduleDate
+                        });
+
+                        alert('تم إضافة الموعد بنجاح!');
+                        pageManager.showPage('schedule');
+                    }
+
+                    // إعادة تعيين النموذج
+                    document.getElementById('publishForm').reset();
+                    document.getElementById('fileName').textContent = 'لم يتم اختيار ملف';
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('حدث خطأ أثناء النشر. يرجى المحاولة مرة أخرى.');
+                }
+            },
+
+            readFile(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            },
+
+            setupAdminTools() {
+                document.getElementById('addScholarBtn')?.addEventListener('click', () => {
+                    const nameInput = document.getElementById('newScholar');
+                    const name = nameInput.value.trim();
+
+                    if (!name) {
+                        alert('يرجى إدخال اسم الشيخ');
+                        return;
+                    }
+
+                    const scholar = dataManager.addScholar({
+                        name,
+                        description: 'شيخ مضافة حديثاً'
+                    });
+
+                    // تحديث قائمة الشيوخ
+                    this.loadScholars();
+
+                    // تفريغ الحقل
+                    nameInput.value = '';
+
+                    alert(`تم إضافة الشيخ "${name}" بنجاح!`);
+                });
+            }
+        };
+
+        // إدارة تسجيل الدخول
+        const loginManager = {
+            mathAnswer: null,
+
+            init() {
+                this.setupLoginModal();
+                this.generateMathQuestion();
+            },
+
+            setupLoginModal() {
+                const hiddenBtn = document.getElementById('hiddenAdminBtn');
+                const modal = document.getElementById('loginModal');
+                const cancelBtn = document.getElementById('cancelLogin');
+                const verifyBtn = document.getElementById('submitVerification');
+                const loginBtn = document.getElementById('submitLogin');
+
+                // فتح النافذة
+                hiddenBtn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                    this.generateMathQuestion();
+                    document.getElementById('mathAnswer').focus();
+                });
+
+                // إغلاق النافذة
+                cancelBtn.addEventListener('click', () => this.closeModal());
+
+                // التحقق من السؤال الحسابي
+                verifyBtn.addEventListener('click', () => this.verifyMathAnswer());
+
+                // تسجيل الدخول
+                loginBtn.addEventListener('click', () => this.login());
+
+                // إدخال بالإدخال
+                document.getElementById('mathAnswer')?.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.verifyMathAnswer();
+                });
+
+                document.getElementById('password')?.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.login();
+                });
+            },
+
+            generateMathQuestion() {
+                const num1 = Math.floor(Math.random() * 10) + 1;
+                const num2 = Math.floor(Math.random() * 10) + 1;
+                const operator = ['+', '-', '×'][Math.floor(Math.random() * 3)];
+                
+                let answer;
+                switch(operator) {
+                    case '+': answer = num1 + num2; break;
+                    case '-': answer = num1 - num2; break;
+                    case '×': answer = num1 * num2; break;
+                }
+
+                this.mathAnswer = answer;
+                document.getElementById('mathQuestion').textContent = `${num1} ${operator} ${num2}`;
+            },
+
+            verifyMathAnswer() {
+                const userAnswer = parseInt(document.getElementById('mathAnswer').value);
+                const message = document.getElementById('loginMessage');
+
+                if (userAnswer === this.mathAnswer) {
+                    message.textContent = 'تم التحقق بنجاح! أدخل كلمة المرور';
+                    message.className = 'login-message success';
+                    document.getElementById('humanVerification').style.display = 'none';
+                    document.getElementById('passwordStep').style.display = 'block';
+                    document.getElementById('submitVerification').style.display = 'none';
+                    document.getElementById('submitLogin').style.display = 'block';
+                    document.getElementById('password').focus();
+                } else {
+                    message.textContent = 'الإجابة خاطئة! حاول مرة أخرى';
+                    message.className = 'login-message error';
+                    this.generateMathQuestion();
+                    document.getElementById('mathAnswer').value = '';
+                }
+            },
+
+            login() {
+                const password = document.getElementById('password').value;
+                const message = document.getElementById('loginMessage');
+
+                if (password === '1234') {
+                    dataManager.currentUser = 'user';
+                    message.textContent = 'تم الدخول كمستخدم بنجاح!';
+                    message.className = 'login-message success';
+                    this.finalizeLogin();
+                } else if (password === '4444') {
+                    dataManager.currentUser = 'admin';
+                    message.textContent = 'تم الدخول كمسؤول بنجاح!';
+                    message.className = 'login-message success';
+                    this.finalizeLogin();
+                } else {
+                    message.textContent = 'كلمة المرور خاطئة! حاول مرة أخرى';
+                    message.className = 'login-message error';
+                    document.getElementById('password').value = '';
+                    document.getElementById('password').focus();
+                }
+            },
+
+            finalizeLogin() {
+                dataManager.saveData();
+                pageManager.updateUserStatus();
+                
+                setTimeout(() => {
+                    this.closeModal();
+                    if (dataManager.currentUser === 'admin' || dataManager.currentUser === 'user') {
+                        pageManager.showPage('publish');
+                    }
+                }, 1500);
+            },
+
+            closeModal() {
+                const modal = document.getElementById('loginModal');
+                modal.classList.remove('active');
+                
+                // إعادة تعيين النموذج
+                document.getElementById('humanVerification').style.display = 'block';
+                document.getElementById('passwordStep').style.display = 'none';
+                document.getElementById('submitVerification').style.display = 'block';
+                document.getElementById('submitLogin').style.display = 'none';
+                document.getElementById('mathAnswer').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('loginMessage').textContent = 'يرجى إكمال خطوة التحقق للمتابعة';
+                document.getElementById('loginMessage').className = 'login-message info';
+                
+                this.generateMathQuestion();
+            }
+        };
+
+        // تهيئة القائمة المتنقلة للهواتف
+        const mobileMenuManager = {
+            init() {
+                const menuBtn = document.getElementById('mobileMenuBtn');
+                const navMenu = document.getElementById('navMenu');
+
+                menuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+
+                // إغلاق القائمة عند النقر على رابط
+                document.querySelectorAll('#navMenu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+        };
+
+        // تهيئة التطبيق
+        document.addEventListener('DOMContentLoaded', () => {
+            pageManager.init();
+            loginManager.init();
+            mobileMenuManager.init();
+
+            // تحديث حالة المستخدم عند التحميل
+            pageManager.updateUserStatus();
+        });
+    </script>
+</body>
+</html>
